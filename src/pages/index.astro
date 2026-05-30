@@ -1,50 +1,206 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+// NextHop — landing page. Astro 5, pure SSG, no client-side JS.
+const title = "NextHop — Plan your day. Anywhere.";
+const description =
+  "NextHop is a travel-planning app that helps you discover places, build day-by-day itineraries, and save favourites — with curated picks personalised to your interests, pace, and travel style.";
 ---
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#D4A015" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta property="og:title" content="NextHop — Plan your day. Anywhere." />
+  <meta property="og:description" content="Discover places, build day-by-day itineraries, and save favourites — curated to how you travel." />
+  <meta property="og:image" content="/nexthop-og.png" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <style>
+    :root {
+      --gold: #D4A015;
+      --gold-deep: #B8860B;
+      --bg: #FAF7F2;
+      --ink: #1A1A1A;
+      --muted: #4A4A4A;
+      --card: #FFFFFF;
+      --hairline: #ECE6DA;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      position: relative;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* ---------- Topographic backdrop ---------- */
+    .topo {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: url("/map-bg.svg") center top / cover no-repeat;
+      background-attachment: fixed;
+      opacity: 0.5;
+      pointer-events: none;
+      /* clear the centre so it frames the hero rather than crowding it */
+      -webkit-mask-image: radial-gradient(125% 62% at 50% 30%, transparent 0%, transparent 30%, #000 78%);
+      mask-image: radial-gradient(125% 62% at 50% 30%, transparent 0%, transparent 30%, #000 78%);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: clamp(64px, 13vw, 124px) 24px 48px;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero { text-align: center; }
+    .lockup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(12px, 2.6vw, 20px);
+    }
+    .globe {
+      width: clamp(44px, 11.5vw, 64px);
+      height: auto;
+      flex: none;
+      display: block;
+    }
+    h1 {
+      font-size: clamp(48px, 13vw, 72px);
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+      margin: 0;
+    }
+    .tagline {
+      margin: 14px 0 0;
+      font-size: clamp(20px, 5.2vw, 25px);
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .lede {
+      margin: 24px auto 0;
+      max-width: 480px;
+      font-size: clamp(16px, 4.4vw, 18px);
+      color: var(--muted);
+      text-wrap: pretty;
+    }
+
+    /* ---------- Card ---------- */
+    .card {
+      margin-top: clamp(44px, 9vw, 64px);
+      background: var(--card);
+      border: 1px solid var(--hairline);
+      border-radius: 22px;
+      box-shadow: 0 6px 24px rgba(26, 26, 26, 0.05);
+      padding: clamp(28px, 6vw, 40px);
+      text-align: center;
+    }
+    .card h2 {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+    }
+    .card p {
+      margin: 14px auto 0;
+      max-width: 420px;
+      font-size: 17px;
+      color: var(--ink);
+      text-wrap: pretty;
+    }
+    a { color: var(--gold-deep); }
+    a.mail {
+      font-weight: 600;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+    .divider {
+      height: 1px;
+      background: var(--hairline);
+      border: 0;
+      margin: clamp(24px, 5vw, 32px) auto;
+      max-width: 200px;
+    }
+    .legal {
+      display: flex;
+      gap: 28px;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .legal a { color: var(--ink); text-decoration: none; }
+    .legal a:hover { color: var(--gold-deep); }
+    .legal a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px 56px;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.01em;
+    }
+
+    /* ---------- Focus ---------- */
+    a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="topo" aria-hidden="true"></div>
+  <main>
+    <section class="hero">
+      <div class="lockup">
+        <svg class="globe" viewBox="-31 -31 724 724" aria-hidden="true">
+          <defs>
+            <clipPath id="globeClip"><circle cx="331" cy="331" r="320"></circle></clipPath>
+          </defs>
+          <g clip-path="url(#globeClip)" stroke="#1A1A1A" stroke-width="50" fill="none">
+            <line x1="0" y1="331" x2="662" y2="331"></line>
+            <ellipse cx="331" cy="331" rx="160" ry="320"></ellipse>
+          </g>
+          <circle cx="331" cy="331" r="320" fill="none" stroke="#1A1A1A" stroke-width="50"></circle>
+        </svg>
+        <h1>NextHop</h1>
+      </div>
+      <p class="tagline">Plan your day. Anywhere.</p>
+      <p class="lede">NextHop helps you discover places worth your time and shape them into day-by-day itineraries you'll actually follow.</p>
+    </section>
+
+    <section class="card">
+      <h2>Get in touch</h2>
+      <p>Questions, feedback, press? Email us at <a class="mail" href="mailto:hello@nexthopapp.com">hello@nexthopapp.com</a></p>
+      <hr class="divider" />
+      <nav class="legal" aria-label="Legal">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+      </nav>
+    </section>
+  </main>
+
+  <footer>© 2026 Aventura Mobile</footer>
+</body>
 </html>

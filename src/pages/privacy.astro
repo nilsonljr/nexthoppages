@@ -1,0 +1,237 @@
+---
+// NextHop — Privacy Policy. Astro 5, pure SSG, no client-side JS.
+const title = "Privacy Policy — NextHop";
+const description = "How NextHop collects, uses, and protects your data — and the choices you have.";
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#D4A015" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta property="og:title" content="Privacy Policy — NextHop" />
+  <meta property="og:description" content="How NextHop collects, uses, and protects your data — and the choices you have." />
+  <meta property="og:image" content="/nexthop-og.png" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <style>
+    :root {
+      --gold: #D4A015;
+      --gold-deep: #B8860B;
+      --bg: #FAF7F2;
+      --ink: #1A1A1A;
+      --muted: #4A4A4A;
+      --card: #FFFFFF;
+      --hairline: #ECE6DA;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.68;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* ---------- Header ---------- */
+    .site-header {
+      border-bottom: 1px solid var(--hairline);
+      background: rgba(250, 247, 242, 0.85);
+      backdrop-filter: saturate(160%) blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .site-header .inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 16px 24px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .brand-globe {
+      width: 29px;
+      height: 29px;
+      flex: none;
+    }
+    .brand span {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* ---------- Document ---------- */
+    main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: clamp(40px, 8vw, 72px) 24px 24px;
+    }
+    .doc-title {
+      font-size: clamp(34px, 8vw, 46px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+      margin: 0;
+    }
+    .effective {
+      margin: 12px 0 0;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+    }
+    .rule {
+      height: 3px;
+      width: 56px;
+      border: 0;
+      border-radius: 2px;
+      margin: 28px 0 0;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
+    }
+    .content { margin-top: 8px; }
+    .content h2 {
+      font-size: clamp(20px, 5vw, 24px);
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      margin: 44px 0 0;
+    }
+    .content p {
+      margin: 14px 0 0;
+      font-size: 17px;
+      color: var(--muted);
+      text-wrap: pretty;
+    }
+    .content p strong { color: var(--ink); font-weight: 600; }
+    .content a { color: var(--gold-deep); font-weight: 600; text-underline-offset: 3px; }
+
+    .closing {
+      margin-top: 52px;
+      padding-top: 28px;
+      border-top: 1px solid var(--hairline);
+      font-size: 17px;
+      color: var(--muted);
+    }
+    .closing a { color: var(--gold-deep); font-weight: 600; text-underline-offset: 3px; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 32px 24px 64px;
+    }
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .back:hover { color: var(--gold-deep); }
+
+    a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ---------- Print ---------- */
+    @media print {
+      :root { --bg: #fff; }
+      body { background: #fff; line-height: 1.5; }
+      .site-header { position: static; border-bottom: 1px solid #ccc; background: #fff; backdrop-filter: none; }
+      main, footer { max-width: 100%; padding-left: 0; padding-right: 0; }
+      .content h2 { margin-top: 22px; page-break-after: avoid; }
+      .content p { color: #222; font-size: 11.5pt; }
+      .rule { background: #999; }
+      .effective, .doc-title, .brand span { color: #000; }
+      .back, .site-header { display: none; }
+      a { color: #000; text-decoration: underline; }
+      @page { margin: 18mm; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <a class="brand" href="/" aria-label="NextHop — back to home">
+        <svg class="brand-globe" viewBox="-31 -31 724 724" aria-hidden="true">
+          <defs>
+            <clipPath id="brandGlobeClip"><circle cx="331" cy="331" r="320"></circle></clipPath>
+          </defs>
+          <g clip-path="url(#brandGlobeClip)" stroke="#1A1A1A" stroke-width="50" fill="none">
+            <line x1="0" y1="331" x2="662" y2="331"></line>
+            <ellipse cx="331" cy="331" rx="160" ry="320"></ellipse>
+          </g>
+          <circle cx="331" cy="331" r="320" fill="none" stroke="#1A1A1A" stroke-width="50"></circle>
+        </svg>
+        <span>NextHop</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="doc-title">Privacy Policy</h1>
+    <p class="effective">Effective May 28, 2026</p>
+    <hr class="rule" />
+
+    <div class="content">
+      <h2>What this policy covers</h2>
+      <p>This policy explains what data NextHop collects when you use the app, how we use it, who we share it with, and the choices you have. By using NextHop you agree to the practices described here.</p>
+
+      <h2>Account information</h2>
+      <p>When you create an account we store the email address and password you provide through our authentication partner, Supabase. If you sign up with Apple, we store the unique Apple user identifier and (with your permission) the name you choose to share. We also store the first name, last name, and hometown you enter on the sign-up screen and any subsequent edits you make.</p>
+      <p>You can update your profile information at any time from Profile → Edit. You can request deletion of your account and associated data by emailing <a href="mailto:hello@nexthopapp.com">hello@nexthopapp.com</a>.</p>
+
+      <h2>Trips, favourites, and preferences</h2>
+      <p>When you save a trip, favourite a place, or pick a language, that data is stored in your Supabase account so it stays in sync across devices. We do not sell, rent, or share any of this data with third parties for marketing purposes.</p>
+
+      <h2>Trip planning content</h2>
+      <p>NextHop curates city itineraries and place suggestions. To generate a custom day, we send the city name, the date or month of travel, your selected interests (e.g. food, history, nature), your selected pace and transport style, and — if you supplied one — the name and approximate coordinates of your starting hotel or landmark. We do not send your name, email, or any account identifier with these requests.</p>
+
+      <h2>Photos and location services</h2>
+      <p>If you choose to set a profile photo, you grant temporary access to your photo library. The photo is uploaded to our private Supabase storage bucket and linked only to your account.</p>
+      <p>NextHop never asks for your real-time location. Starting-point search uses Apple's MapKit (on-device) and is sent to our backend only as text and an approximate coordinate when you tap a result.</p>
+
+      <h2>Third-party services we use</h2>
+      <p><strong>Supabase</strong> — account, profile, trip, and favourite storage. Hosted on Amazon Web Services.</p>
+      <p><strong>Anthropic</strong> — generates the natural-language descriptions in our curated itineraries. We send the city, your preferences, and any places you have selected; we do not send personal identifiers.</p>
+      <p><strong>Apple StoreKit</strong> — handles all subscription purchases, renewals, and restores. Payment data is processed by Apple and never reaches our servers.</p>
+      <p><strong>OpenStreetMap (Nominatim)</strong> — geocodes city names. We send only the search term you type.</p>
+      <p><strong>Pexels &amp; Unsplash</strong> — provide background imagery. No data about you is shared with these services.</p>
+
+      <h2>Data retention</h2>
+      <p>We keep your account, trips, and favourites until you delete them or request account deletion. Deleting a trip or favourite removes it from our servers immediately. Account deletion is processed within 30 days.</p>
+
+      <h2>Children</h2>
+      <p>NextHop is not directed at children under 13. We do not knowingly collect data from anyone under 13. If you believe a child has provided data to us, please contact <a href="mailto:hello@nexthopapp.com">hello@nexthopapp.com</a> and we will delete it.</p>
+
+      <h2>Your rights</h2>
+      <p>Depending on where you live (e.g. EU, UK, California), you may have the right to access, correct, export, or delete the personal data we hold about you. Email <a href="mailto:hello@nexthopapp.com">hello@nexthopapp.com</a> to exercise any of these rights. We respond within 30 days.</p>
+
+      <h2>Changes to this policy</h2>
+      <p>When we change this policy we will update the effective date above and, when changes are material, surface a notice in the app. Continued use after a change means you accept the updated policy.</p>
+    </div>
+
+    <p class="closing">Questions? Email <a href="mailto:hello@nexthopapp.com">hello@nexthopapp.com</a>. Or head back to <a href="/">NextHop</a>.</p>
+  </main>
+
+  <footer>
+    <a class="back" href="/">← Back to NextHop</a>
+  </footer>
+</body>
+</html>
